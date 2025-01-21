@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bem-vindo</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Conectando o arquivo CSS -->
+</head>
+<body>
+  <div class="container">
+    <h1>Bem-vindo, <span id="user-name"></span>!</h1>
+    <div id="user-info">
+      <img id="user-image" src="" alt="User Image">
+      <p>Email: <span id="user-email"></span></p>
+      <p class="logout">Want to log out of account <a href="index.html" id="logout-link">Sign out</a></p>
+    </div>
+  </div>
+  <script>
+    // Função para exibir as informações do usuário
+    function displayUserInfo(user) {
+      document.getElementById('user-name').textContent = user.displayName;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('user-image').src = user.photoURL;
+    }
+
+    // Verificar se o usuário está autenticado
+    window.onload = function() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        displayUserInfo(user);
+      } else {
+        // Redirecionar para a página de login se o usuário não estiver autenticado
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</body>
+</html>
